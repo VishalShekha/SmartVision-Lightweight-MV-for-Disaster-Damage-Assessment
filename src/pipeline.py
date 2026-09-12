@@ -20,7 +20,7 @@ def run_pipeline(image_path):
     }
 
 if __name__ == "__main__":
-    result = run_pipeline("data/train/damage/-93.6141_30.754263.jpeg")
+    result = run_pipeline("D:\\MV Project\\data\\train\\destroyed\\guatemala-volcano_00000019_7f9688c2.png")
     print(f"Prediction: {result['label']} ({result['confidence']:.1%} confidence)")
     cv2.imwrite("output_heatmap.jpeg", cv2.cvtColor(result["heatmap"], cv2.COLOR_RGB2BGR))
     print("Saved heatmap to output_heatmap.jpeg")

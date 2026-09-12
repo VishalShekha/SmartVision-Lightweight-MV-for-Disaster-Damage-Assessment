@@ -93,6 +93,7 @@ events.out.tfevents.*
 datasets/
 data/
 dataset/
+archieve/
 
 # ==========================================
 # Images / Videos Generated During Testing

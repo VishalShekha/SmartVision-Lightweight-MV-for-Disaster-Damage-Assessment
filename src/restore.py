@@ -35,5 +35,5 @@ def restore_image(image_path, save_path=None):
 
 if __name__ == "__main__":
     # quick manual test
-    result = restore_image("data/train/damage/-93.6141_30.754263.jpeg", "test_restored.jpeg")
+    result = restore_image("D:\\MV Project\\data\\train\\destroyed\\guatemala-volcano_00000019_7f9688c2.png", "test_restored.jpeg")
     print("Restored image saved to test_restored.jpeg — open it and compare to the original.")
