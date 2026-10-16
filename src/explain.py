@@ -5,14 +5,25 @@ from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image
 from torchvision import models, transforms
 import torch.nn as nn
+from pathlib import Path
 
-def load_model(model_path="models/damage_classifier.pth"):
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_MODEL_PATH = PROJECT_ROOT / "best_model.pth"
+DEFAULT_CLASSES = ["destroyed", "major_damage", "minor_damage", "no_damage"]
+
+
+def load_model(model_path=DEFAULT_MODEL_PATH):
     checkpoint = torch.load(model_path, map_location="cpu")
-    classes = checkpoint["classes"]
+    if isinstance(checkpoint, dict) and "model_state" in checkpoint:
+        model_state = checkpoint["model_state"]
+        classes = checkpoint.get("classes", DEFAULT_CLASSES)
+    else:
+        model_state = checkpoint
+        classes = DEFAULT_CLASSES
 
     model = models.mobilenet_v2(weights=None)
     model.classifier[1] = nn.Linear(model.last_channel, len(classes))
-    model.load_state_dict(checkpoint["model_state"])
+    model.load_state_dict(model_state)
     model.eval()
     return model, classes
 
