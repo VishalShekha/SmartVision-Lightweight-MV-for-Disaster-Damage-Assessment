@@ -8,7 +8,7 @@ import torch.nn as nn
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MODEL_PATH = PROJECT_ROOT / "best_model.pth"
+DEFAULT_MODEL_PATH = PROJECT_ROOT / "best_model.pth.zip"
 DEFAULT_CLASSES = ["destroyed", "major_damage", "minor_damage", "no_damage"]
 
 
